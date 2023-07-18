@@ -1,0 +1,36 @@
+#include<stdio.h>
+void display(int i,int n,char str[n][100]);
+int count(int i,int n,char str[n][100]);
+void main()
+{
+   int n,i,x,z,max=0;
+   char str[n][100];
+   printf("Enter the no.of lines\n");
+   scanf("%d",&n);
+    printf("Enter  lines\n",i);
+   for(i=0;i<=n;i++)
+   {
+     gets(str[i]);
+     x=count(i,n,str);
+     if(x>max)
+       {z=i;
+        max=x;}
+    }
+    printf("The longest sentence is\n");
+    display(z,n,str);
+
+}
+void display(int i,int n,char str[n][100])
+{
+    puts(str[i]);
+}
+int count(int i,int n,char str[n][100])
+{
+    int j,x=0;
+    while(str[i][j]!='\0')
+    {
+       x++;
+       j++;
+    }
+    return x;
+}
