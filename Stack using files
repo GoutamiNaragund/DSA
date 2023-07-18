@@ -1,0 +1,119 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+struct stack
+{
+    int data[MAX];
+    int top;
+
+};
+typedef struct stack stack;
+int empty(stack s)
+{
+    if(s.top==-1)
+        return(1);
+    else
+        return(0);
+}
+
+int full(stack s)
+{
+
+    if(s.top==MAX-1)
+        return(1);
+    else
+        return(0);
+
+}
+void push(stack *ps,int num,FILE *fp)
+{
+    if(full(*ps))
+    {
+        printf("\nstack overflow");
+        return;
+    }
+    ps->top=ps->top+1;
+    ps->data[ps->top]=num;
+    fp=fopen("stack.txt","a");
+   fprintf(fp,"%d\n",num);
+   fclose(fp);
+}
+int pop(stack *ps)
+{
+    int c[10000];
+    if(empty(*ps))
+    {
+        printf("\nstack underflow");
+         return;
+    }
+    int num=ps->data[ps->top];
+    ps->top=ps->top-1;
+    fp=fopen("stack.txt","r");
+   for(i=0;i<n;i++)
+  {
+   fscanf(fp,"%d\n",&c[i]);
+  }
+   fclose(fp);
+
+    return num;
+
+}
+void display(stack ps)
+{
+    int i;
+    if(empty(ps))
+        printf("\nunderflow");
+    else{
+    for(i=0;i<=ps.top; i++)
+        printf("%d\t",ps.data[i]);
+    }
+}
+int main()
+{
+     int n,P,Q,F=0,a[10000],b[10000],i;
+FILE *fp;
+printf("enter n\n");
+scanf("%d",&n);
+printf("enter P\n");
+scanf("%d",&P);
+printf("Enter Q\n");
+scanf("%d",&Q);
+fp=fopen("input.txt","w");
+for(i=0;i<n;i++)
+{
+   a[i]=rand()%(Q+1-P)+P;
+   fprintf(fp,"%d\n",a[i]);
+   printf("%d\n",a[i]);
+}
+fclose(fp);
+fp=fopen("input.txt","r");
+for(i=0;i<n;i++)
+{
+   fscanf(fp,"%d\n",&b[i]);
+}
+fclose(fp);
+    stack s;
+    s.top=-1;
+    int num,ch,x;
+    while(1)
+    {
+        printf("\nenter choice");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:num=b[F];
+            F++;
+            push(&s,num,fp);
+            break;
+        case 2:
+
+            x=pop(&s);
+            break;
+        case 3:
+            display(s);
+            break;
+
+        }
+
+    }
+}
